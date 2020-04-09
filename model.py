@@ -498,7 +498,8 @@ class StaticGraphAdapter(object):
                 self._executor.run(startup_prog)
 
         if self._nranks < 2:
-            compiled_prog = fluid.CompiledProgram(prog)
+            compiled_prog = fluid.CompiledProgram(prog) \
+                            if mode != 'train' else prog
         else:
             compiled_prog = prog
 
